@@ -39,7 +39,7 @@
                     operador2: {
                         type: Number,
                         value: 2,
-                        observer: '_infinito()',
+                        observer: '_infinito',
                         reflectToAttribute: true
                     },
                     suma: {
@@ -72,7 +72,7 @@
 
             // Declaración de los observers Complejos
             static get observers() {
-                return ['_getTotal(uma, resta, multiplicacion, division), _infinito()']
+                return ['_getTotal(suma, resta, multiplicacion, division), _infinito()']
             }
 
             // Complejo
