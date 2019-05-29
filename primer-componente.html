@@ -1,0 +1,107 @@
+<link rel="import" href="../polymer/polymer-element.html">
+
+<dom-module id="primer-componente">
+    <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>Valor de suma [[suma]]</h2>
+    <h2>Valor de resta [[resta]]</h2>
+    <h2>Valor de multiplicacion  [[multiplicacion]]</h2>
+    <h2>Valor de division [[division]]</h2>
+    <h2>Valor de resultados (total) [[total]]</h2>
+    
+  </template>
+
+    <script>
+        /**
+         * `primer-componente`
+         * primer componente
+         *
+         * @customElement
+         * @polymer
+         * @demo demo/index.html
+         */
+        class PrimerComponente extends Polymer.Element {
+            static get is() {
+                return 'primer-componente';
+            }
+
+            static get properties() {
+                return {
+                    operador1: {
+                        type: Number,
+                        value: 10,
+                        reflectToAttribute: true
+                    },
+                    operador2: {
+                        type: Number,
+                        value: 2,
+                        observer: '_infinito()',
+                        reflectToAttribute: true
+                    },
+                    suma: {
+                        type: Number,
+                        computed: '_getSuma(operador1, operador2)',
+                        readOnly: true
+                    },
+                    resta: {
+                        type: Number,
+                        computed: '_getResta(operador1, operador2)',
+                        readOnly: true
+                    },
+                    multiplicacion: {
+                        type: Number,
+                        computed: '_getMultiplicacion(operador1, operador2)',
+                        readOnly: true
+                    },
+                    division: {
+                        type: Number,
+                        computed: '_getDivision(operador1, operador2)',
+                        readOnly: true
+                    },
+                    total: {
+                        type: Number,
+                        computed: '_getTotal(suma, resta, multiplicacion, division)'
+                    }
+
+                };
+            }
+
+            // Declaración de los observers Complejos
+            static get observers() {
+                return ['_getTotal(uma, resta, multiplicacion, division), _infinito()']
+            }
+
+            // Complejo
+
+            _getSuma(operador1, operador2) {
+                return operador1 + operador2;
+            }
+
+            _getResta(operador1, operador2) {
+                return operador1 - operador2;
+            }
+
+            _getMultiplicacion(operador1, operador2) {
+                return operador1 * operador2;
+            }
+
+            _getDivision(operador1, operador2) {
+                return operador1 / operador2;
+            }
+
+            _getTotal(suma, resta, multiplicacion, division) {
+                return suma + resta + multiplicacion + division
+            }
+            _infinito() {
+                return 'infinity'
+            }
+
+        }
+
+        window.customElements.define(PrimerComponente.is, PrimerComponente);
+    </script>
+</dom-module>
